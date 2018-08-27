@@ -19,8 +19,24 @@ log = logger.getLogger("solver")
 # global defaults dict
 GD = None
 
+# LB - These have to be set so that we can call solver as stand-alone solver
+GD = {}
+GD['flags'] = {}
+GD['flags']["warn-thr"] = 0.3
+GD['madmax'] = {}
+GD['madmax']['enable'] = 0
+GD['madmax']['threshold'] = [0,10]
+GD['madmax']['global-threshold'] = [0,12]
+GD['madmax']['diag'] = 1
+GD['madmax']['offdiag'] = 1
+GD['madmax']['estimate'] = 'corr'
+
 # MS metadata
-metadata = None
+#metadata = None
+class MetaData(object):
+    def __init__(self):
+        self.num_corrs = 4
+metadata = MetaData()
 
 # gain machine factory to use
 gm_factory = None
